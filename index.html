@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Interfaces — appuyez sur /</title>
+<meta name="description" content="Trois interfaces, une seule page. Appuyez sur / pour passer de l'une à l'autre.">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#000;overflow:hidden}
+  #stage{position:fixed;inset:0}
+  #stage iframe{
+    position:absolute;inset:0;width:100%;height:100%;border:0;display:block;
+    background:#000;opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .38s ease, visibility 0s linear .38s;
+  }
+  #stage iframe.active{
+    opacity:1;visibility:visible;pointer-events:auto;
+    transition:opacity .38s ease, visibility 0s linear 0s;
+  }
+  #hint{
+    position:fixed;left:20px;bottom:20px;z-index:50;
+    display:flex;align-items:center;gap:8px;
+    background:rgba(8,8,12,.88);border:1px solid rgba(255,255,255,.16);
+    color:#e8e8ee;padding:10px 16px;border-radius:999px;
+    font:500 13px/1 system-ui,-apple-system,Segoe UI,sans-serif;
+    box-shadow:0 8px 30px rgba(0,0,0,.45);backdrop-filter:blur(10px);
+    opacity:0;transform:translateY(10px);transition:.35s ease;pointer-events:none;
+  }
+  #hint.show{opacity:1;transform:translateY(0)}
+  #hint .kbd{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:24px;height:24px;padding:0 7px;border-radius:7px;
+    background:#f5f5f7;color:#111;font-weight:800;font-size:14px;
+  }
+  #hint .sep{opacity:.4}
+  #hint b{font-weight:800}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <iframe id="f0" src="designer.html" class="active" title="Interface 1 — Digital Designer"></iframe>
+  <iframe id="f1" src="saas.html" title="Interface 2 — One Task at a Time"></iframe>
+  <iframe id="f2" src="navia.html" title="Interface 3 — Navia Portfolio"></iframe>
+</div>
+
+<div id="hint" aria-live="polite">
+  <span class="kbd">/</span>
+  <span>pour changer d'interface</span>
+  <span class="sep">·</span>
+  <span><b id="counter">1</b>/3</span>
+</div>
+
+<script>
+  window.__isShell = true;
+</script>
+<script src="js/keys.js"></script>
+<script>
+(function () {
+  var iframes = Array.prototype.slice.call(document.querySelectorAll('#stage iframe'));
+  var hint = document.getElementById('hint');
+  var counter = document.getElementById('counter');
+  var cur = 0, lock = false, hideTimer;
+
+  window.__cycleInterface = function () {
+    if (lock) return;
+    lock = true;
+    setTimeout(function () { lock = false; }, 450);
+
+    var prev = cur;
+    cur = (cur + 1) % iframes.length;
+    iframes[prev].classList.remove('active');
+    iframes[cur].classList.add('active');
+    try { iframes[cur].contentWindow.focus(); } catch (e) {}
+    flash();
+  };
+
+  function flash() {
+    counter.textContent = String(cur + 1);
+    hint.classList.add('show');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () { hint.classList.remove('show'); }, 2800);
+  }
+
+  /* initial hint, then auto-hide */
+  setTimeout(flash, 500);
+
+  /* focus the active frame so "/" is captured even after a click elsewhere */
+  iframes.forEach(function (f) {
+    f.addEventListener('load', function () {
+      if (f.classList.contains('active')) { try { f.focus(); } catch (e) {} }
+    });
+  });
+  window.addEventListener('click', function () {
+    try { iframes[cur].contentWindow.focus(); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
