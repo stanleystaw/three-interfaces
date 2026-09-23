@@ -17,7 +17,7 @@
     <a class="logo" href="index.html">AV<span>·GALLERY</span></a>
     <nav class="filters" id="filters">
       <button class="filter active" data-cat="all">Tout <b>48</b></button>
-      <button class="filter" data-cat="iface">Interfaces <b>3</b></button>
+      <button class="filter" data-cat="iface">Originales <b>3</b></button>
       <button class="filter" data-cat="dark">Dark <b>15</b></button>
       <button class="filter" data-cat="saas">SaaS Purple <b>15</b></button>
       <button class="filter" data-cat="d3">3D Character <b>15</b></button>
@@ -28,17 +28,17 @@
 
 <section class="hero-strip">
   <div class="wrap">
-    <p class="eyebrow">48 DESIGN SHOTS · 3 INTERFACES + 45 IMAGES</p>
+    <p class="eyebrow">48 INTERFACES · 3 ORIGINALES + 45 NOUVELLES</p>
     <h1>THE <span class="gray">GALLERY</span></h1>
-    <p class="sub">Toutes les créations au même endroit — clique sur une interface pour l'ouvrir,<br>clique sur une image pour l'afficher en grand.</p>
+    <p class="sub">Toutes les interfaces au même endroit — clique sur une carte pour ouvrir la page,<br><kbd>/</kbd> passe à l'interface suivante · <kbd>Esc</kbd> revient ici.</p>
   </div>
 </section>
 
 <!-- ============ INTERFACES ============ -->
 <section class="wrap block" id="interfaces">
   <div class="block-head">
-    <h2>INTERFACES <span>3</span></h2>
-    <p>Les 3 pages interactives — navigue entre elles avec la touche <kbd>/</kbd></p>
+    <h2>INTERFACES ORIGINALES <span>3</span></h2>
+    <p>Les 3 pages d'origine — navigue avec la touche <kbd>/</kbd> (cycle sur les 48)</p>
   </div>
   <div class="iface-grid">
     <a class="iface-card" href="designer.html">
@@ -74,24 +74,16 @@
 <!-- ============ IMAGES ============ -->
 <section class="wrap block" id="images">
   <div class="block-head">
-    <h2>IMAGES <span>45</span></h2>
-    <p>Inspirées des recherches Pinterest / Dribbble — clique pour agrandir</p>
+    <h2>45 NOUVELLES INTERFACES <span>45</span></h2>
+    <p>Recréées à partir des visuels (10 générées + 35 Pinterest/Dribbble) — clique pour ouvrir l'interface</p>
   </div>
   <div class="grid" id="grid"><!-- filled by JS --></div>
 </section>
 
 <footer class="site-foot wrap">
-  <p>© 2026 AV Gallery — 48 créations.</p>
-  <p><kbd>Esc</kbd> revient à la galerie depuis une interface</p>
+  <p>© 2026 AV Gallery — 48 interfaces (3 + 45).</p>
+  <p><kbd>Esc</kbd> revient à la galerie · <kbd>/</kbd> interface suivante</p>
 </footer>
-
-<!-- lightbox -->
-<div class="lightbox" id="lightbox" hidden>
-  <button class="lb-close" id="lbClose" aria-label="Fermer">✕</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Précédent">‹</button>
-  <figure><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption></figure>
-  <button class="lb-next" id="lbNext" aria-label="Suivant">›</button>
-</div>
 
 <script src="js/keys.js"></script>
 <script src="js/gallery.js"></script>
