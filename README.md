@@ -2,17 +2,17 @@
 
 A single site that **lists and links to everything**:
 
-- **3 interactive interfaces** (open directly, press `Esc` to come back to the gallery)
-- **45 design images** (Pinterest / Dribbble inspired, generated) — click to enlarge in a lightbox
-- Press **`/`** anywhere to jump to / cycle through the interfaces
+- **3 interactive interfaces** (open directly, press `Esc` to come back to the gallery, `/` to cycle)
+- **45 design images** in a filterable grid + lightbox:
+  - **10** AI-generated shots (dark portfolio style, `g01–g10`)
+  - **35** found via **Pinterest / Dribbble / Behance** searches (`f01–f35`) — each credited with its source link in the lightbox
+- Breakdown: 15 Dark · 15 SaaS Purple · 15 3D Character
 
 | # | Interface | File |
 |---|-----------|------|
 | 1 | AV — Digital Designer (dark portfolio) | `designer.html` |
 | 2 | One Task at a Time (purple SaaS) | `saas.html` |
 | 3 | Navia — Frontend Developer (3D portfolio) | `navia.html` |
-
-Images live in `assets/gallery/g01.jpg … g45.jpg` (15 dark · 15 SaaS purple · 15 3D character).
 
 ## Run locally
 
