@@ -3,99 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Three Interfaces — appuyez sur /</title>
-<meta name="description" content="Trois interfaces, une seule page. Appuyez sur / pour passer de l'une à l'autre.">
-<style>
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:#000;overflow:hidden}
-  #stage{position:fixed;inset:0}
-  #stage iframe{
-    position:absolute;inset:0;width:100%;height:100%;border:0;display:block;
-    background:#000;opacity:0;visibility:hidden;pointer-events:none;
-    transition:opacity .38s ease, visibility 0s linear .38s;
-  }
-  #stage iframe.active{
-    opacity:1;visibility:visible;pointer-events:auto;
-    transition:opacity .38s ease, visibility 0s linear 0s;
-  }
-  #hint{
-    position:fixed;left:20px;bottom:20px;z-index:50;
-    display:flex;align-items:center;gap:8px;
-    background:rgba(8,8,12,.88);border:1px solid rgba(255,255,255,.16);
-    color:#e8e8ee;padding:10px 16px;border-radius:999px;
-    font:500 13px/1 system-ui,-apple-system,Segoe UI,sans-serif;
-    box-shadow:0 8px 30px rgba(0,0,0,.45);backdrop-filter:blur(10px);
-    opacity:0;transform:translateY(10px);transition:.35s ease;pointer-events:none;
-  }
-  #hint.show{opacity:1;transform:translateY(0)}
-  #hint .kbd{
-    display:inline-flex;align-items:center;justify-content:center;
-    min-width:24px;height:24px;padding:0 7px;border-radius:7px;
-    background:#f5f5f7;color:#111;font-weight:800;font-size:14px;
-  }
-  #hint .sep{opacity:.4}
-  #hint b{font-weight:800}
-</style>
+<title>Design Gallery — 3 interfaces + 45 images</title>
+<meta name="description" content="Galerie de 48 créations : 3 interfaces interactives et 45 images de web design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/gallery.css">
 </head>
 <body>
 
-<div id="stage">
-  <iframe id="f0" src="designer.html" class="active" title="Interface 1 — Digital Designer"></iframe>
-  <iframe id="f1" src="saas.html" title="Interface 2 — One Task at a Time"></iframe>
-  <iframe id="f2" src="navia.html" title="Interface 3 — Navia Portfolio"></iframe>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="logo" href="index.html">AV<span>·GALLERY</span></a>
+    <nav class="filters" id="filters">
+      <button class="filter active" data-cat="all">Tout <b>48</b></button>
+      <button class="filter" data-cat="iface">Interfaces <b>3</b></button>
+      <button class="filter" data-cat="dark">Dark <b>15</b></button>
+      <button class="filter" data-cat="saas">SaaS Purple <b>15</b></button>
+      <button class="filter" data-cat="d3">3D Character <b>15</b></button>
+    </nav>
+    <div class="head-hint"><kbd>/</kbd> ouvre l'interface suivante</div>
+  </div>
+</header>
+
+<section class="hero-strip">
+  <div class="wrap">
+    <p class="eyebrow">48 DESIGN SHOTS · 3 INTERFACES + 45 IMAGES</p>
+    <h1>THE <span class="gray">GALLERY</span></h1>
+    <p class="sub">Toutes les créations au même endroit — clique sur une interface pour l'ouvrir,<br>clique sur une image pour l'afficher en grand.</p>
+  </div>
+</section>
+
+<!-- ============ INTERFACES ============ -->
+<section class="wrap block" id="interfaces">
+  <div class="block-head">
+    <h2>INTERFACES <span>3</span></h2>
+    <p>Les 3 pages interactives — navigue entre elles avec la touche <kbd>/</kbd></p>
+  </div>
+  <div class="iface-grid">
+    <a class="iface-card" href="designer.html">
+      <img src="assets/gallery/t1.jpg" alt="Digital Designer — dark portfolio">
+      <div class="iface-body">
+        <span class="num">01</span>
+        <h3>Digital Designer</h3>
+        <p>Portfolio sombre — photo, stats, featured work</p>
+        <span class="open">OUVRIR L'INTERFACE →</span>
+      </div>
+    </a>
+    <a class="iface-card" href="saas.html">
+      <img src="assets/gallery/t2.jpg" alt="One Task at a Time — purple SaaS">
+      <div class="iface-body">
+        <span class="num">02</span>
+        <h3>One Task at a Time</h3>
+        <p>Landing SaaS violette — glow, formes 3D, dashboard</p>
+        <span class="open">OUVRIR L'INTERFACE →</span>
+      </div>
+    </a>
+    <a class="iface-card" href="navia.html">
+      <img src="assets/gallery/t3.jpg" alt="Navia — 3D character portfolio">
+      <div class="iface-body">
+        <span class="num">03</span>
+        <h3>Navia Portfolio</h3>
+        <p>Portfolio 3D violet — personnages, skills, projets</p>
+        <span class="open">OUVRIR L'INTERFACE →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ IMAGES ============ -->
+<section class="wrap block" id="images">
+  <div class="block-head">
+    <h2>IMAGES <span>45</span></h2>
+    <p>Inspirées des recherches Pinterest / Dribbble — clique pour agrandir</p>
+  </div>
+  <div class="grid" id="grid"><!-- filled by JS --></div>
+</section>
+
+<footer class="site-foot wrap">
+  <p>© 2026 AV Gallery — 48 créations.</p>
+  <p><kbd>Esc</kbd> revient à la galerie depuis une interface</p>
+</footer>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lbClose" aria-label="Fermer">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Précédent">‹</button>
+  <figure><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-next" id="lbNext" aria-label="Suivant">›</button>
 </div>
 
-<div id="hint" aria-live="polite">
-  <span class="kbd">/</span>
-  <span>pour changer d'interface</span>
-  <span class="sep">·</span>
-  <span><b id="counter">1</b>/3</span>
-</div>
-
-<script>
-  window.__isShell = true;
-</script>
 <script src="js/keys.js"></script>
-<script>
-(function () {
-  var iframes = Array.prototype.slice.call(document.querySelectorAll('#stage iframe'));
-  var hint = document.getElementById('hint');
-  var counter = document.getElementById('counter');
-  var cur = 0, lock = false, hideTimer;
-
-  window.__cycleInterface = function () {
-    if (lock) return;
-    lock = true;
-    setTimeout(function () { lock = false; }, 450);
-
-    var prev = cur;
-    cur = (cur + 1) % iframes.length;
-    iframes[prev].classList.remove('active');
-    iframes[cur].classList.add('active');
-    try { iframes[cur].contentWindow.focus(); } catch (e) {}
-    flash();
-  };
-
-  function flash() {
-    counter.textContent = String(cur + 1);
-    hint.classList.add('show');
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(function () { hint.classList.remove('show'); }, 2800);
-  }
-
-  /* initial hint, then auto-hide */
-  setTimeout(flash, 500);
-
-  /* focus the active frame so "/" is captured even after a click elsewhere */
-  iframes.forEach(function (f) {
-    f.addEventListener('load', function () {
-      if (f.classList.contains('active')) { try { f.focus(); } catch (e) {} }
-    });
-  });
-  window.addEventListener('click', function () {
-    try { iframes[cur].contentWindow.focus(); } catch (e) {}
-  });
-})();
-</script>
+<script src="js/gallery.js"></script>
 </body>
 </html>

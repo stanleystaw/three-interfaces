@@ -1,17 +1,17 @@
-/* Navigation between the three interfaces with the "/" key. */
+/* Navigation: "/" cycles through the 3 interfaces — Escape returns to the gallery. */
 (function () {
-  var ORDER = ['index.html', 'saas.html', 'navia.html'];
+  var INTERFACES = ['designer.html', 'saas.html', 'navia.html'];
 
-  function currentName() {
+  function pageName() {
     var p = location.pathname.split('/').pop();
-    if (ORDER.indexOf(p) >= 0) return p;
-    return 'index.html';
+    return p || 'index.html';
   }
 
   function nextHref() {
-    var i = ORDER.indexOf(currentName());
-    if (i < 0) i = 0;
-    return ORDER[(i + 1) % ORDER.length];
+    var name = pageName();
+    var i = INTERFACES.indexOf(name);
+    if (i < 0) return INTERFACES[0];           /* gallery / unknown → first interface */
+    return INTERFACES[(i + 1) % INTERFACES.length];
   }
 
   function isTyping(el) {
@@ -21,23 +21,21 @@
   }
 
   window.addEventListener('keydown', function (e) {
-    if (e.key !== '/' || e.ctrlKey || e.altKey || e.metaKey) return;
     if (isTyping(e.target)) return;
-    e.preventDefault();
-    e.stopPropagation();
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
 
-    var inFrame = window.top !== window.self;
-    if (inFrame) {
-      try {
-        if (window.top.__cycleInterface) window.top.__cycleInterface();
-        else location.href = nextHref();
-      } catch (err) {
-        location.href = nextHref();
-      }
-    } else if (window.__cycleInterface) {
-      window.__cycleInterface();
-    } else {
+    /* "/" → next interface */
+    if (e.key === '/') {
+      e.preventDefault();
+      e.stopPropagation();
       location.href = nextHref();
+      return;
+    }
+
+    /* Escape → back to the gallery */
+    if (e.key === 'Escape' && pageName() !== 'index.html') {
+      e.preventDefault();
+      location.href = 'index.html';
     }
   }, true);
 })();
